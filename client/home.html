@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Taskly - Dashboard</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header>
+        <div class="container nav-container">
+            <div class="brand-title">Taskly</div>
+            <div class="user-nav-actions">
+                <span id="welcomeUserMessage">Welcome, User</span>
+                <button id="logoutButton" class="btn btn-danger">Logout</button>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <div class="dashboard-grid">
+            <section>
+                <div class="panel">
+                    <h3 class="panel-title">Create Project</h3>
+                    <form id="projectForm">
+                        <div class="form-group">
+                            <label for="projectTitle">Project Title</label>
+                            <input type="text" id="projectTitle" class="form-control" placeholder="Enter title" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="projectDesc">Description</label>
+                            <input type="text" id="projectDesc" class="form-control" placeholder="Enter brief summary" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-block">Create Project</button>
+                    </form>
+                </div>
+
+                <div class="panel">
+                    <h3 class="panel-title">Projects</h3>
+                    <ul id="projectListDisplay" class="project-list-items">
+                        </ul>
+                </div>
+            </section>
+
+            <section id="activeWorkspacePanel">
+                <div class="empty-state-fallback" id="emptyWorkspaceMessage">
+                    <h3>Select or Open a Project to view Tasks</h3>
+                    <p>Choose an item from the project list pane to inspect objectives and timelines.</p>
+                </div>
+
+                <div id="projectDetailSection" style="display: none;">
+                    <div class="panel">
+                        <h2 id="currentProjectTitle" style="word-break: break-word;">Project Title</h2>
+                        <p id="currentProjectDesc" style="color: var(--text-muted); margin-bottom: 1.5rem; word-break: break-word;">Project Description</p>
+                        
+                        <hr style="border: 0; border-top: 1px solid var(--border-color); margin-bottom: 1.5rem;">
+                        
+                        <h3 class="panel-title">Add New Task</h3>
+                        <form id="taskForm">
+                            <div class="form-group">
+                                <label for="taskTitle">Task Title</label>
+                                <input type="text" id="taskTitle" class="form-control" placeholder="Task title" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="taskDesc">Task Description</label>
+                                <input type="text" id="taskDesc" class="form-control" placeholder="Describe requirements" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="taskAssignee">Assign To (User Email)</label>
+                                <input type="email" id="taskAssignee" class="form-control" placeholder="user@example.com" required>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Create Task</button>
+                        </form>
+                    </div>
+
+                    <div class="panel">
+                        <h3 class="panel-title">Project Tasks</h3>
+                        <div id="taskListDisplay" class="task-list-container">
+                            </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <script src="js/api.js"></script>
+    <script src="js/home.js"></script>
+</body>
+</html>
