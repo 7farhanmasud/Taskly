@@ -1,62 +1,113 @@
-# Taskly 🚀
+# Taskly
 
-Taskly is a lightweight, responsive full-stack project and task management application built using clean MVC (Model-View-Controller) architecture guidelines. The project features a native asynchronously-driven frontend interacting with a secure Node.js, Express, and MongoDB backend framework, packed with a fluid Day/Night theme engine and an interactive Kanban board task workflow system.
+Taskly is a simple project and task management web application built with Node.js, Express, MongoDB, and vanilla JavaScript. It allows users to register, log in, create projects, assign tasks to other users, update task status, and add comments to tasks.
 
-## 🌟 Key Features
+## Features
 
-- **Robust Authentication:** Secure account creation and login workflows utilizing JSON Web Tokens (JWT) and `bcryptjs` for industry-standard password hashing.
-- **Dynamic Kanban Dashboard:** Interactive, status-segregated workflows rendering tasks automatically across custom columns (`Pending`, `In Progress`, `Completed`).
-- **Interactive Day & Night Modes:** Smooth transitions switching between a crisp modern layout theme and a high-contrast deep tech dark mode configuration.
-- **Project Configuration Ports:** Workspace organization features letting teams initialize distinct project boards, remove outdated workflows, and assign milestones.
-- **Real-Time Context Collaboration:** Instant inline comment streaming under targeted task containers enabling fluid developer updates.
-- **Strict Parameter Security:** Input sanitization parameters applied frontend-wide blocking cross-site scripting (XSS) code injection vulnerabilities.
+- User authentication with JWT
+- User registration and login
+- Create and delete projects
+- Create tasks under a selected project
+- Assign tasks to users by email
+- Update task status: Pending, In Progress, Completed
+- Add and view task comments
+- Clean dashboard-style UI for managing work
 
----
+## Tech Stack
 
-## 🛠️ Tech Stack & System Architecture
+- Frontend: HTML, CSS, JavaScript
+- Backend: Node.js, Express.js
+- Database: MongoDB with Mongoose
+- Authentication: JSON Web Tokens (JWT)
 
-### Backend Core
-- **Runtime Environment:** Node.js
-- **Web Framework:** Express.js (utilizing modern path-to-regexp parsing fallbacks)
-- **Database Engine:** MongoDB (Object Modeling via Mongoose ODM)
-- **Security & Authorization:** JSON Web Tokens (JWT) & Bcrypt password encryption
-
-### Frontend Interface
-- **Layout & Presentation:** Modern Semantic HTML5, CSS Grid / Flexbox variables
-- **Logic Engine:** Vanilla JavaScript (Native Fetch API asynchronous handlers)
-
----
-
-## 📂 Project Directory Layout
+## Project Structure
 
 ```text
 Taskly/
-├── client/                      # Frontend Client Static Assets
+├── client/
 │   ├── css/
-│   │   └── style.css            # Unified Light/Dark Style Sheets
 │   ├── js/
-│   │   ├── api.js               # Global Fetch Async API Utility Wrapper
-│   │   ├── login.js             # Authentication Management Script
-│   │   ├── register.js          # User Registration Handler
-│   │   └── home.js              # Core Dashboard & Kanban Board Controller
-│   ├── login.html               # User Login Screen Layout
-│   ├── register.html            # User Sign-Up Layout
-│   └── home.html                # Workspace Hub Matrix
-└── server/                      # Backend Core API Framework
+│   ├── home.html
+│   ├── login.html
+│   └── register.html
+└── server/
     ├── config/
-    │   └── db.js                # Database Connection Configuration
+    ├── controllers/
     ├── middleware/
-    │   └── authMiddleware.js    # Secure Route Token Validation Interceptor
     ├── models/
-    │   ├── User.js              # Account Collections Mapping Schema
-    │   ├── Project.js           # Project Boards Storage Schema
-    │   ├── Task.js              # Workspace Objectives Schema
-    │   └── Comment.js           # Collaboration Logging Schema
     ├── routes/
-    │   ├── authRoutes.js        # Authentication Handlers Routing Map
-    │   ├── projectRoutes.js     # Project Configuration Routing Map
-    │   ├── taskRoutes.js        # Task Parameter Operations Map
-    │   └── commentRoutes.js     # Collaborative Notes Routing Map
-    ├── .env                     # Local Environment Parameters Config
-    ├── package.json             # Core Dependency Management File
-    └── server.js                # Primary System Bootstrap Hook
+    ├── package.json
+    └── server.js
+```
+
+## Getting Started
+
+### 1. Clone the repository
+
+```bash
+git clone <your-repository-url>
+cd Taskly
+```
+
+### 2. Install server dependencies
+
+```bash
+cd server
+npm install
+```
+
+### 3. Configure environment variables
+
+Create a `.env` file inside the `server` folder with the following variables:
+
+```env
+MONGO_URI=your_mongodb_connection_string
+JWT_SECRET=your_secret_key
+PORT=5000
+```
+
+### 4. Run the application
+
+Start the backend server:
+
+```bash
+npm run dev
+```
+
+Then open your browser and visit:
+
+```text
+http://localhost:5000
+```
+
+The app serves the frontend from the server, so no separate frontend build step is required.
+
+## API Overview
+
+### Auth
+- `POST /api/auth/register`
+- `POST /api/auth/login`
+
+### Projects
+- `GET /api/projects`
+- `POST /api/projects`
+- `DELETE /api/projects/:id`
+
+### Tasks
+- `GET /api/tasks?project=projectId`
+- `POST /api/tasks`
+- `PUT /api/tasks/:id`
+- `DELETE /api/tasks/:id`
+
+### Comments
+- `GET /api/comments/:taskId`
+- `POST /api/comments`
+
+## Notes
+
+- This project is intended as a lightweight task management app for learning and demo purposes.
+- Make sure MongoDB is running and accessible through the provided `MONGO_URI`.
+
+## License
+
+This project is licensed under the ISC License.
